@@ -1,13 +1,12 @@
 
-
-############################ Getting-Started-Create-and-Manage-Cloud-Resources-Challenge-Lab ########################
+**************** Getting-Started-Create-and-Manage-Cloud-Resources-Challenge-Lab ****************
 
 
 
 
 gcloud compute instances create nucleus-jumphost \
           --network nucleus-vpc \
-          --zone us-east1-b  \
+          --zone asia-east1-c  \
           --machine-type f1-micro  \
           --image-family debian-9  \
           --image-project debian-cloud
@@ -17,11 +16,11 @@ gcloud compute instances create nucleus-jumphost \
 gcloud container clusters create nucleus-backend \
           --num-nodes 1 \
           --network nucleus-vpc \
-          --region us-east1
+          --region asia-east1-c
           
           
 gcloud container clusters get-credentials nucleus-backend \
-          --region us-east1
+          --region asia-east1-c
 
 kubectl create deployment hello-server \
           --image=gcr.io/google-samples/hello-app:2.0
@@ -46,7 +45,7 @@ gcloud compute instance-templates create web-server-template \
           --metadata-from-file startup-script=startup.sh \
           --network nucleus-vpc \
           --machine-type g1-small \
-          --region us-east1
+          --region asia-east1-c
 
 
 
@@ -54,7 +53,7 @@ gcloud compute instance-groups managed create web-server-group \
           --base-instance-name web-server \
           --size 2 \
           --template web-server-template \
-          --region us-east1
+          --region asia-east1-c
 
 
 
@@ -68,7 +67,7 @@ gcloud compute http-health-checks create http-basic-check
 gcloud compute instance-groups managed \
           set-named-ports web-server-group \
           --named-ports http:80 \
-          --region us-east1
+          --region asia-east1-c
 
 
 gcloud compute backend-services create web-server-backend \
@@ -80,7 +79,7 @@ gcloud compute backend-services create web-server-backend \
           
 gcloud compute backend-services add-backend web-server-backend \
           --instance-group web-server-group \
-          --instance-group-region us-east1 \
+          --instance-group-region asia-east1-c \
           --global
 
 
