@@ -22,7 +22,7 @@ gcloud compute instances create nucleus-jumphost \
 gcloud config set compute/zone us-east1-b
 
 
-gcloud container clusters create new-cluster
+gcloud container clusters create nucleus-cluster
             
 --------------------------------------------------------------
 Part2
