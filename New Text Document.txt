@@ -5,7 +5,7 @@
 
 Task1
 
-gcloud compute instances create nucleus-jumphost \
+gcloud compute instances create [Input_Given_Instance_name] \
           --network nucleus-vpc \
           --zone us-east1-b  \
           --machine-type f1-micro  \
@@ -42,7 +42,7 @@ Part3
 
 kubectl expose deployment hello-server \
           --type=LoadBalancer \
-          --port 8080
+          --port [Input_Given_Port_Number]
 
 --------------------------------------------------------------
 
@@ -80,9 +80,10 @@ gcloud compute instance-groups managed create web-server-group \
 ------------------------------------------------------------------
 Part4
 
-gcloud compute firewall-rules create web-server-firewall \
+gcloud compute firewall-rules create [Input_Given_Firewall_Name] \
           --allow tcp:80 \
-          --network nucleus-vpc
+          --network nucleus-vpc \
+          --rules=tcp:80
 
 -------------------------------------------------------------------
 Part5
