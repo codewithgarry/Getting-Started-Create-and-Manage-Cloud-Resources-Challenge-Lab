@@ -19,15 +19,11 @@ gcloud compute instances create nucleus-jumphost \
  Part1
 
 
-gcloud container clusters create nucleus-backend \
-          --num-nodes 1 \
-          --network nucleus-vpc \
-          --region us-east1
-          
-          
-gcloud container clusters get-credentials nucleus-backend \
-          --region us-east1
-          
+gcloud config set compute/zone us-east1-b
+
+
+gcloud container clusters create nucleus-cluster
+            
 --------------------------------------------------------------
 Part2
 
@@ -65,7 +61,7 @@ Part2
 gcloud compute instance-templates create web-server-template \
           --metadata-from-file startup-script=startup.sh \
           --network nucleus-vpc \
-          --machine-type g1-small \
+          --machine-type f1-micro \
           --region us-east1
 
 -----------------------------------------------------------------
